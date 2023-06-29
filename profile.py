@@ -38,8 +38,8 @@ server = request.RawPC("server")
 client = request.RawPC("client")
 
 # Request that a specific image be installed on this node
-server.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD"
-client.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD"
+#server.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD"
+#client.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD"
 
 # Create a link between them
 link1 = request.Link(members = [server,client])
