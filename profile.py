@@ -35,34 +35,11 @@ pc.verifyParameters()
 
 # Add a raw PC to the request.
 server = request.RawPC("server")
-# https://docs.emulab.net/advanced-topics.html , Public IP Access
-# server.routable_control_ip = True
-iface1 = server.addInterface()
-# Specify the IPv4 address
-iface1.addAddress(pg.IPv4Address("192.168.1.1", "255.255.255.0"))
-
 client = request.RawPC("client")
-# client.routable_control_ip = True
-iface2 = client.addInterface()
-# Specify the IPv4 address
-iface2.addAddress(pg.IPv4Address("192.168.1.2", "255.255.255.0"))
 
 # Request that a specific image be installed on this node
 server.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD"
 client.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD"
-
-# Create the bridged link between the two nodes.
-link = request.BridgedLink("link")
-# link.bridge.hardware_type = NODETYPE
-# Add the interfaces we created above.
-link.addInterface(iface1)
-link.addInterface(iface2)
-
-link.bridge.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD"
-
-# Give bridge some shaping parameters. (Implict parameter found in real link)
-# link.bandwidth = 10000
-# link.latency   = 36  # Implicit latency in live network link (IMC'17)
 
 # Create a link between them
 link1 = request.Link(members = [server,client])
